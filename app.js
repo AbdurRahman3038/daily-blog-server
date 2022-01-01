@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5050;
 const blogRoute = require("./routes/blogRoute");
+const reviewRoute = require("./routes/reviewRoute");
 
 const app = express();
 dotenv.config();
@@ -23,10 +24,16 @@ connect();
 app.use(express.json());
 app.use(cors());
 app.use("/blogs", blogRoute);
+app.use("/reviews", reviewRoute);
 
-app.get("/", (req, res) => {
-  res.json("hello");
-});
+// default error handler
+const errHandler = (err, req, res, next) => {
+  if (err.headerSent) {
+    return next();
+  }
+  res.status(500).json(err.message);
+};
+app.use(errHandler);
 
 // listen
 

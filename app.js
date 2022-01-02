@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const port = process.env.PORT || 5050;
 const blogRoute = require("./routes/blogRoute");
 const reviewRoute = require("./routes/reviewRoute");
+const userRoute = require("./routes/userRoute");
+const commentRoute = require("./routes/commentRoute");
 
 const app = express();
 dotenv.config();
@@ -25,6 +27,8 @@ app.use(express.json());
 app.use(cors());
 app.use("/blogs", blogRoute);
 app.use("/reviews", reviewRoute);
+app.use("/users", userRoute);
+app.use("/comments", commentRoute);
 
 // default error handler
 const errHandler = (err, req, res, next) => {

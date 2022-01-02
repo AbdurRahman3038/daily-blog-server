@@ -10,7 +10,7 @@ const blogSchema = new Schema({
     type: String,
     require: true,
   },
-  authorEmail: {
+  email: {
     type: String,
     require: true,
   },
@@ -18,7 +18,7 @@ const blogSchema = new Schema({
     type: String,
     require: true,
   },
-  image: {
+  blogImage: {
     type: String,
     default: "https://neilpatel.com/wp-content/uploads/2017/02/blogging.jpg",
   },

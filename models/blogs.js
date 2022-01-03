@@ -20,11 +20,9 @@ const blogSchema = new Schema({
   },
   blogImage: {
     type: String,
-    default: "https://neilpatel.com/wp-content/uploads/2017/02/blogging.jpg",
   },
   time: {
     type: Date,
-    default: Date.now(),
   },
 });
 

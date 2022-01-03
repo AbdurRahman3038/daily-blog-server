@@ -14,11 +14,10 @@ router.get("/", async (req, res) => {
 });
 
 // get a result
-router.get("/:id", async (req, res) => {
+router.get("/:email", async (req, res) => {
   try {
-    const id = req.params.id;
-    const query = { _id: mongoose.Types.ObjectId(id) };
-    const result = await User.findOne(query);
+    const email = req.params.email;
+    const result = await User.findOne({ email: email });
     res.json(result);
   } catch (err) {
     res.status(500).json(err.message);
@@ -33,6 +32,21 @@ router.post("/", async (req, res) => {
     res.json(result);
   } catch (err) {
     res.status(500).json(err.message);
+  }
+});
+
+// insert or upsert user information
+router.put("/", async (req, res) => {
+  try {
+    const user = req.body;
+    const filter = { email: user.email };
+    const options = { upsert: true };
+    const updateDoc = { $set: user };
+    const result = await User.findOneAndUpdate(filter, updateDoc, options);
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Failed to update user");
   }
 });
 

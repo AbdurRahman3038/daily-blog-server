@@ -6,7 +6,11 @@ const commnentSchema = new Schema({
     type: String,
     require: true,
   },
-  userId: {
+  username: {
+    type: String,
+    require: true,
+  },
+  photoURL: {
     type: String,
     require: true,
   },
